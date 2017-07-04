@@ -1,0 +1,35 @@
+@import 'vars.sass'
+
+.LoginComponent
+  padding-top: 50px
+  background-color: #eee
+  height: 93vh
+  text-align: center
+  width: 100%
+  position: absolute
+  transition: all 0.5s
+  transform: translateX(100%)
+  &.visible
+    transform: translateX(0%)
+  .inputs
+    display: flex
+    flex-direction: column
+    align-items: center
+    button
+      background-color: $mainColor
+      border: none
+      color: white
+      padding: 5px 15px
+      border-radius: 3px
+      &:hover
+        background-color: darken($mainColor, 10%)
+      &:disabled
+        background-color: lightgrey
+
+.RegComponent
+  transition: all 0.5s
+  transform: translateX(-100%)
+  &.visible
+    transform: translateX(0%)
+
+
