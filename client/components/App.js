@@ -1,30 +1,51 @@
 import InputForm from './InputForm';
 import MainContent from './MainContent';
-import LoginComponent from './LoginComponent';
+import MainContentParent from './MainContentParent';
 
 import { Route } from 'react-router-dom';
 
-import { connect } from 'react-redux';
-import { silentAuth } from '../actions/authActions';
 
 import './style/App.sass';
 
 const App = createReactClass({
 
-    componentDidMount() {
-        this.props.silentAuth()
+    getInitialState() {
+        return {
+            brand: '',
+            price: ''
+        }
+    },
+
+    getFields(options) {
+        this.setState({
+            brand: options.brand,
+            price: options.price,
+            page: options.page
+        });
     },
 
     render() {
+
         return (
                 <div className="jumbotron App">
 
-                    <InputForm />
-                    <MainContent />
+                    <InputForm
+                        brand={this.state.brand}
+                        price={this.state.price}
+                        page={this.state.page}
+                    />
+
+                    <Route path="/choose/:brand/:page" render={(props) => {
+                        return <MainContentParent
+                            getFields={this.getFields}
+                            {...props}
+                        />
+                    }}/>
+
                 </div>
         );
     }
 });
 
 
-export default connect(null, { silentAuth })(App);
+export default App;

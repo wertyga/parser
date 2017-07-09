@@ -18,7 +18,7 @@ const MainContent = createReactClass({
                 });
             } else {
                 this.setState({
-                    cars: this.state.cars.concat(this.props.cars)
+                    cars: this.props.cars
                 });
             };
 

@@ -35,13 +35,6 @@ export function loginUser(user) {
     }
 };
 
-export function logout() {
-    return dispatch => {
-        localStorage.removeItem('jwtToken');
-        setTokenHeader(false);
-        dispatch(loginUser({}));
-    }
-};
 
 
 export function silentAuth() {
@@ -55,8 +48,9 @@ export function silentAuth() {
                     axios.post('/new-user').then(token => {
                         token = token.data.token;
                         localStorage.setItem('jwtToken', token);
-                        return token;
-                    }).then(token => dispatch(loginUser(jwtDecode(token))))
+                        dispatch(loginUser(jwtDecode(token)));
+                        throw err
+                    })
                 })
 
         }

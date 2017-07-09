@@ -26,7 +26,7 @@ router.post('/login', (req, res) => {
     try{
         user = jwt.verify(req.body.user, configJwt.configJwt);
     } catch(err) {
-        res.status(401).json({ error: 'This user is not exist' });
+        res.status(401).json({ error: 'Bad token' });
     };
 
     if(user) {

@@ -91,7 +91,7 @@ export function getCarsAV(req, res, next) {
 };
 
 export function getCarsABW(req, res, next) {
-    if (!req.body.price) req.body.price = '100%';
+    // if (!req.body.price) req.body.price = '100%';
     let car = req.body.car;
     let id = req.body.userId;
     if (car.split(' ').length > 1) car = car.split(' ').join('+');
@@ -200,7 +200,7 @@ function calcPrice(car) {
     return result
  };
 
-function getCarsList($) {
+export function getCarsList($) {
     let carsObjArr = $('.product-full-inner').map((i, car) => {
         let carPrice = +$(car).find('.data-price-usd').text().replace(/[~\$ ]/g, '');
         let carYear = +$(car).find('.data-year').children().eq(0).text();
